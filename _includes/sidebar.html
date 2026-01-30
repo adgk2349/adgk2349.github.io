@@ -1,153 +1,105 @@
-<style>
-  /* [배경 이미지] 모든 페이지 공통 적용 */
-  body {
-    /* /assets/img/bg.jpg 경로 앞에 '/'가 있어야 모든 페이지에서 나옵니다 */
-    background: url('/assets/img/bg.jpg') no-repeat center center fixed !important;
-    background-size: cover !important;
-  }
+<!-- The Side Bar -->
 
-  /* [PC 화면 디자인] 1200px 이상일 때 */
-  @media (min-width: 1200px) {
-    #sidebar {
-      position: fixed !important;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 260px !important;
-      z-index: 999 !important; /* 클릭 안 됨 방지 */
-      
-      /* 유리 효과 (Glassmorphism) */
-      background-color: rgba(20, 25, 40, 0.65) !important;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
-      
-      /* 내용물 가운데 정렬 */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+  <header class="profile-wrapper">
+    <a href="{{ '/' | relative_url }}" id="avatar" class="rounded-circle">
+      {%- if site.avatar != empty and site.avatar -%}
+        {%- capture avatar_url -%}
+          {% include media-url.html src=site.avatar %}
+        {%- endcapture -%}
+        <img src="{{- avatar_url -}}" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
+      {%- endif -%}
+    </a>
 
-    /* 메인 콘텐츠 영역: 사이드바 옆으로 밀기 */
-    #main-wrapper {
-      margin-left: 260px !important;
-      background-color: rgba(255, 255, 255, 0.92) !important; /* 흰색 반투명 */
-      min-height: 100vh;
-      position: relative;
-      z-index: 1;
-    }
-    
-    /* 다크모드일 때 메인 영역 */
-    [data-mode="dark"] #main-wrapper {
-      background-color: rgba(30, 32, 40, 0.85) !important; /* 검정 반투명 */
-    }
-  }
+    <a class="site-title d-block" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <p class="site-subtitle fst-italic mb-0">{{ site.tagline }}</p>
+  </header>
+  <!-- .profile-wrapper -->
 
-  /* [모바일/태블릿 디자인] 1200px 미만일 때 */
-  @media (max-width: 1199px) {
-    #sidebar {
-      /* 모바일 메뉴 열었을 때 배경 */
-      background-color: rgba(20, 25, 40, 0.95) !important; 
-    }
-    #main-wrapper {
-      margin-left: 0 !important;
-      background-color: rgba(255, 255, 255, 0.95) !important;
-    }
-  }
-
-  /* [프로필 사진] */
-  #sidebar #avatar img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50% !important;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 20px rgba(100, 200, 255, 0.6); /* 네온 효과 */
-    transition: transform 0.4s ease;
-    margin-bottom: 1rem;
-  }
-  #sidebar #avatar img:hover {
-    transform: rotate(360deg) scale(1.1);
-  }
-
-  /* [텍스트 가독성] */
-  #sidebar .nav-link, #sidebar .site-title a, #sidebar .site-subtitle {
-    color: rgba(255, 255, 255, 0.95) !important;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* 글자 그림자 */
-  }
-</style>
-
-<div id="sidebar" class="d-flex flex-column align-items-center">
-  <div class="profile-wrapper text-center">
-    <div id="avatar">
-      <a href="{{ '/' | relative_url }}" class="mx-auto">
-        {% if site.avatar != empty and site.avatar %}
-          {% capture avatar_url %}
-            {% if site.avatar contains '://' %}
-              {{ site.avatar }}
-            {% elsif site.img_cdn != empty and site.img_cdn %}
-              {{ site.img_cdn | append: site.avatar }}
-            {% else %}
-              {{ site.avatar | relative_url }}
-            {% endif %}
-          {% endcapture %}
-          <img src="{{ avatar_url }}" alt="avatar" onerror="this.style.display='none'">
-        {% endif %}
-      </a>
-    </div>
-
-    <div class="site-title">
-      <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    </div>
-    <div class="site-subtitle fst-italic">{{ site.tagline }}</div>
-  </div>
-
-  <ul class="w-100">
-    <li class="nav-item{% if page.layout == 'home' %}{{ " active" }}{% endif %}">
-      <a href="{{ '/' | relative_url }}" class="nav-link">
-        <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
-        <span>{{ site.data.locales[include.lang].tabs.home | default: "Home" | upcase }}</span>
-      </a>
-    </li>
-    {% for tab in site.tabs %}
-      <li class="nav-item{% if tab.url == page.url %}{{ " active" }}{% endif %}">
-        <a href="{{ tab.url | relative_url }}" class="nav-link">
-          <i class="fa-fw {{ tab.icon }} ml-xl-3 mr-xl-3 unloaded"></i>
-          <span>{{ site.data.locales[include.lang].tabs[tab.key] | default: tab.key | upcase }}</span>
+  <nav class="flex-column flex-grow-1 w-100 ps-0">
+    <ul class="nav">
+      <!-- home -->
+      <li class="nav-item{% if page.layout == 'home' %}{{ " active" }}{% endif %}">
+        <a href="{{ '/' | relative_url }}" class="nav-link">
+          <i class="fa-fw fas fa-home"></i>
+          <span>{{ site.data.locales[include.lang].tabs.home | upcase }}</span>
         </a>
       </li>
-    {% endfor %}
-  </ul>
+      <!-- the real tabs -->
+      {% for tab in site.tabs %}
+        <li class="nav-item{% if tab.url == page.url %}{{ " active" }}{% endif %}">
+          <a href="{{ tab.url | relative_url }}" class="nav-link">
+            <i class="fa-fw {{ tab.icon }}"></i>
+            {% capture tab_name %}{{ tab.url | split: '/' }}{% endcapture %}
 
-  <div class="sidebar-bottom d-flex flex-wrap justify-content-center align-items-center w-100">
+            <span>{{ site.data.locales[include.lang].tabs.[tab_name] | default: tab.title | upcase }}</span>
+          </a>
+        </li>
+        <!-- .nav-item -->
+      {% endfor %}
+    </ul>
+  </nav>
+
+  <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
     {% unless site.theme_mode %}
-      <button class="mode-toggle btn" aria-label="Switch Mode">
+      <button type="button" class="btn btn-link nav-link" aria-label="Switch Mode" id="mode-toggle">
         <i class="fas fa-adjust"></i>
       </button>
-      <span class="icon-border"></span>
+
+      {% if site.data.contact.size > 0 %}
+        <span class="icon-border"></span>
+      {% endif %}
     {% endunless %}
 
     {% for entry in site.data.contact %}
-      {% capture url %}
-        {%- if entry.type == 'github' -%}
-          https://github.com/{{ site.github.username }}
-        {%- elsif entry.type == 'twitter' -%}
-          https://twitter.com/{{ site.twitter.username }}
-        {%- elsif entry.type == 'email' -%}
-          {% assign email = site.social.email | split: '@' %}
-          javascript:location.href = 'mailto:' + ['{{ email[0] }}','{{ email[1] }}'].join('@')
-        {%- elsif entry.type == 'rss' -%}
-          {{ "/feed.xml" | relative_url }}
-        {%- else -%}
-          {{ entry.url }}
-        {%- endif -%}
-      {% endcapture %}
+      {%- assign url = null -%}
+
+      {% case entry.type %}
+        {% when 'github', 'twitter' %}
+          {%- unless site[entry.type].username -%}
+            {%- continue -%}
+          {%- endunless -%}
+          {%- capture url -%}
+            https://{{ entry.type }}.com/{{ site[entry.type].username }}
+          {%- endcapture -%}
+        {% when 'email' %}
+          {%- unless site.social.email -%}
+            {%- continue -%}
+          {%- endunless -%}
+          {%- assign email = site.social.email | split: '@' -%}
+          {%- capture url -%}
+            javascript:location.href = 'mailto:' + ['{{ email[0] }}','{{ email[1] }}'].join('@')
+          {%- endcapture -%}
+        {% when 'rss' %}
+          {% assign url = '/feed.xml' | relative_url %}
+        {% else %}
+          {% assign url = entry.url %}
+      {% endcase %}
 
       {% if url %}
-      <a href="{{ url }}" aria-label="{{ entry.type }}"
-        {% unless entry.noblank %}target="_blank" rel="noopener"{% endunless %}>
-        <i class="{{ entry.icon }}"></i>
-      </a>
+        <a
+          href="{{ url }}"
+          aria-label="{{ entry.type }}"
+          {% assign link_types = '' %}
+
+          {% unless entry.noblank %}
+            target="_blank"
+            {% assign link_types = 'noopener noreferrer' %}
+          {% endunless %}
+
+          {% if entry.type == 'mastodon' %}
+            {% assign link_types = link_types | append: ' me' | strip %}
+          {% endif %}
+
+          {% unless link_types == empty %}
+            rel="{{ link_types }}"
+          {% endunless %}
+        >
+          <i class="{{ entry.icon }}"></i>
+        </a>
       {% endif %}
     {% endfor %}
   </div>
-</div>
+  <!-- .sidebar-bottom -->
+</aside>
+<!-- #sidebar -->
