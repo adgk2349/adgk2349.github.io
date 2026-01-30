@@ -1,6 +1,15 @@
 [
   
   {
+    "title": "My own blogs are on the way!! (again)",
+    "url": "/posts/My-Blog-is-(re)opened!!/",
+    "categories": "Blogging, Tutorial",
+    "tags": "Github, Ruby, SSH",
+    "date": "2026-01-30 00:34:00 +0800",
+    "content": "The favicons of Chirpy are placed in the directory assets/img/favicons/. You may want to replace them with your own. The following sections will guide you to create and replace the default favicons.  Generate the favicon  Prepare a square image (PNG, JPG, or SVG) with a size of 512x512 or more, and then go to the online tool Real Favicon Generator and click the button Pick your favicon image to upload your image file.  In the next step, the webpage will show all usage scenarios. You can keep the default options, scroll to the bottom of the page, and click the button Next → to generate the favicon.  Download &amp; Replace  Download the generated package, unzip and delete the following file(s) from the extracted files:     site.webmanifest   And then copy the remaining image files (.PNG, .ICO and .SVG) to cover the original files in the directory assets/img/favicons/ of your Jekyll site. If your Jekyll site doesn’t have this directory yet, just create one.  The following table will help you understand the changes to the favicon files:                 File(s)       From Online Tool       From Chirpy                       *.PNG       ✓       ✗                 *.ICO       ✓       ✗                 *.SVG       ✓       ✗               ✓ means keep, ✗ means delete.   The next time you build the site, the favicon will be replaced with a customized edition."
+  },
+  
+  {
     "title": "Customize the Favicon",
     "url": "/posts/customize-the-favicon/",
     "categories": "Blogging, Tutorial",
