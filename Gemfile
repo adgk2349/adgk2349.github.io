@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 # Chirpy 테마를 사용하기 위한 최소한의 부품 목록
 gem "jekyll", "~> 4.3"
-gem "jekyll-theme-chirpy"
+gem "jekyll-remote-theme"
 
 # 필수 플러그인들 (에러 방지)
 group :jekyll_plugins do
