@@ -1,23 +1,25 @@
 <!-- The Side Bar -->
 <style>
-  /* 1. 블로그 전체 배경 (Red & Blue 감성) */
+  /* 1. 블로그 전체 배경 (bg.jpg 강제 적용) */
   body {
-    background: url('/assets/img/bg.jpg') no-repeat center center fixed;
-    background-size: cover;
+    background: url('/assets/img/bg.jpg') no-repeat center center fixed !important;
+    background-size: cover !important;
   }
 
-  /* 2. 왼쪽 사이드바: 리퀴드 글래스 (불투명 유리) 효과 */
+  /* 2. 사이드바: 리퀴드 글래스 (불투명 유리) 효과 */
   #sidebar {
-    background-color: rgba(20, 20, 35, 0.65) !important; /* 짙은 남색의 반투명 */
-    backdrop-filter: blur(20px); /* ★핵심: 뒤를 흐리게 만듦 */
-    -webkit-backdrop-filter: blur(20px); /* 사파리 호환 */
-    border-right: 1px solid rgba(255, 255, 255, 0.1); /* 얇은 유리 테두리 */
-    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5); /* 그림자 */
+    /* 짙은 남색의 반투명 (rgba 조절로 투명도 변경 가능) */
+    background-color: rgba(20, 20, 35, 0.6) !important; 
+    /* 뒤를 흐리게 만드는 핵심 코드 */
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1); 
+    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5); 
   }
 
   /* 3. 프로필 사진: 둥글게 + 네온 효과 */
   #avatar img {
-    border-radius: 50% !important; /* 원형 */
+    border-radius: 50% !important; 
     border: 3px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 20px rgba(255, 50, 50, 0.7); /* 붉은색 네온 빛 */
     transition: transform 0.4s ease;
@@ -28,15 +30,21 @@
     transform: rotate(360deg) scale(1.1);
   }
 
-  /* 4. 오른쪽 본문 영역도 살짝 투명하게 */
+  /* 4. 본문 영역(글 나오는 곳) 가독성 확보 */
   #main-wrapper {
-    background-color: rgba(255, 255, 255, 0.92) !important; /* 낮: 흰색 92% 불투명 */
+    /* 낮 모드: 흰색 92% 불투명 */
+    background-color: rgba(255, 255, 255, 0.92) !important; 
   }
+  
+  /* 다크 모드일 때 본문 스타일 */
   [data-mode="dark"] #main-wrapper {
-    background-color: rgba(27, 27, 30, 0.85) !important; /* 밤: 검은색 85% 불투명 */
+    /* 밤 모드: 검은색 85% 불투명 -> 배경이 은은하게 비침 */
+    background-color: rgba(27, 27, 30, 0.85) !important; 
     backdrop-filter: blur(10px);
   }
 </style>
+
+<div id="sidebar" class="d-flex flex-column align-items-end">
 
 <aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
   <header class="profile-wrapper">
