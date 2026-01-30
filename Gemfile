@@ -15,3 +15,5 @@ end
 
 # 윈도우 환경 대응용 (삭제하지 마세요)
 gem "wdm", "~> 0.2.0", :platforms => [:mingw, :x64_mingw, :mswin]
+
+gem "html-proofer", "~> 5.0"
