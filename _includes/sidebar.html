@@ -1,149 +1,66 @@
-<!-- The Side Bar -->
-<style>
-  /* 1. 블로그 전체 배경 (bg.jpg 강제 적용) */
-  body {
-    background: url('/assets/img/bg.jpg') no-repeat center center fixed !important;
-    background-size: cover !important;
-  }
+<div id="sidebar" class="d-flex flex-column align-items-center">
+  <div class="profile-wrapper text-center">
+    <div id="avatar">
+      <a href="{{ '/' | relative_url }}" class="mx-auto">
+        {% if site.avatar != empty and site.avatar %}
+          {% capture avatar_url %}
+            {% if site.avatar contains '://' %}
+              {{ site.avatar }}
+            {% elsif site.img_cdn != empty and site.img_cdn %}
+              {{ site.img_cdn | append: site.avatar }}
+            {% else %}
+              {{ site.avatar | relative_url }}
+            {% endif %}
+          {% endcapture %}
+          <img src="{{ avatar_url }}" alt="avatar" onerror="this.style.display='none'">
+        {% endif %}
+      </a>
+    </div>
 
-  /* 2. 사이드바: 리퀴드 글래스 (불투명 유리) 효과 */
-  #sidebar {
-    /* 짙은 남색의 반투명 (rgba 조절로 투명도 변경 가능) */
-    background-color: rgba(20, 20, 35, 0.6) !important; 
-    /* 뒤를 흐리게 만드는 핵심 코드 */
-    backdrop-filter: blur(15px); 
-    -webkit-backdrop-filter: blur(15px);
-    border-right: 1px solid rgba(255, 255, 255, 0.1); 
-    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5); 
-  }
-
-  /* 3. 프로필 사진: 둥글게 + 네온 효과 */
-  #avatar img {
-    border-radius: 50% !important; 
-    border: 3px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 20px rgba(255, 50, 50, 0.7); /* 붉은색 네온 빛 */
-    transition: transform 0.4s ease;
-  }
-  
-  /* 마우스 올리면 빙글 돌아가는 효과 */
-  #avatar img:hover {
-    transform: rotate(360deg) scale(1.1);
-  }
-
-  /* 4. 본문 영역(글 나오는 곳) 가독성 확보 */
-  #main-wrapper {
-    /* 낮 모드: 흰색 92% 불투명 */
-    background-color: rgba(255, 255, 255, 0.92) !important; 
-  }
-  
-  /* 다크 모드일 때 본문 스타일 */
-  [data-mode="dark"] #main-wrapper {
-    /* 밤 모드: 검은색 85% 불투명 -> 배경이 은은하게 비침 */
-    background-color: rgba(27, 27, 30, 0.85) !important; 
-    backdrop-filter: blur(10px);
-  }
-</style>
-
-<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
-  <header class="profile-wrapper">
-    <a href="{{ '/' | relative_url }}" id="avatar" class="rounded-circle">
-      {%- if site.avatar != empty and site.avatar -%}
-        {%- capture avatar_url -%}
-          {% include media-url.html src=site.avatar %}
-        {%- endcapture -%}
-        <img src="{{- avatar_url -}}" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
-      {%- endif -%}
-    </a>
-
-    <a class="site-title d-block" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    <p class="site-subtitle fst-italic mb-0">{{ site.tagline }}</p>
-  </header>
-  <!-- .profile-wrapper -->
-
-  <nav class="flex-column flex-grow-1 w-100 ps-0">
-    <ul class="nav">
-      <!-- home -->
-      <li class="nav-item{% if page.layout == 'home' %}{{ " active" }}{% endif %}">
-        <a href="{{ '/' | relative_url }}" class="nav-link">
-          <i class="fa-fw fas fa-home"></i>
-          <span>{{ site.data.locales[include.lang].tabs.home | upcase }}</span>
+    <div class="site-title">
+      <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    </div>
+    <div class="site-subtitle fst-italic">{{ site.tagline }}</div>
+  </div><ul class="w-100">
+    <li class="nav-item{% if page.layout == 'home' %}{{ " active" }}{% endif %}">
+      <a href="{{ '/' | relative_url }}" class="nav-link">
+        <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>{{ site.data.locales[include.lang].tabs.home | default: "Home" | upcase }}</span>
+      </a>
+    </li>
+    {% for tab in site.tabs %}
+      <li class="nav-item{% if tab.url == page.url %}{{ " active" }}{% endif %}">
+        <a href="{{ tab.url | relative_url }}" class="nav-link">
+          <i class="fa-fw {{ tab.icon }} ml-xl-3 mr-xl-3 unloaded"></i>
+          <span>{{ site.data.locales[include.lang].tabs[tab.key] | default: tab.key | upcase }}</span>
         </a>
       </li>
-      <!-- the real tabs -->
-      {% for tab in site.tabs %}
-        <li class="nav-item{% if tab.url == page.url %}{{ " active" }}{% endif %}">
-          <a href="{{ tab.url | relative_url }}" class="nav-link">
-            <i class="fa-fw {{ tab.icon }}"></i>
-            {% capture tab_name %}{{ tab.url | split: '/' }}{% endcapture %}
+    {% endfor %}
+  </ul>
 
-            <span>{{ site.data.locales[include.lang].tabs.[tab_name] | default: tab.title | upcase }}</span>
-          </a>
-        </li>
-        <!-- .nav-item -->
-      {% endfor %}
-    </ul>
-  </nav>
-
-  <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
-    {% unless site.theme_mode %}
-      <button type="button" class="btn btn-link nav-link" aria-label="Switch Mode" id="mode-toggle">
-        <i class="fas fa-adjust"></i>
-      </button>
-
-      {% if site.data.contact.size > 0 %}
-        <span class="icon-border"></span>
-      {% endif %}
-    {% endunless %}
-
+  <div class="sidebar-bottom d-flex flex-wrap justify-content-center align-items-center w-100">
     {% for entry in site.data.contact %}
-      {%- assign url = null -%}
-
-      {% case entry.type %}
-        {% when 'github', 'twitter' %}
-          {%- unless site[entry.type].username -%}
-            {%- continue -%}
-          {%- endunless -%}
-          {%- capture url -%}
-            https://{{ entry.type }}.com/{{ site[entry.type].username }}
-          {%- endcapture -%}
-        {% when 'email' %}
-          {%- unless site.social.email -%}
-            {%- continue -%}
-          {%- endunless -%}
-          {%- assign email = site.social.email | split: '@' -%}
-          {%- capture url -%}
-            javascript:location.href = 'mailto:' + ['{{ email[0] }}','{{ email[1] }}'].join('@')
-          {%- endcapture -%}
-        {% when 'rss' %}
-          {% assign url = '/feed.xml' | relative_url %}
-        {% else %}
-          {% assign url = entry.url %}
-      {% endcase %}
+      {% capture url %}
+        {%- if entry.type == 'github' -%}
+          https://github.com/{{ site.github.username }}
+        {%- elsif entry.type == 'twitter' -%}
+          https://twitter.com/{{ site.twitter.username }}
+        {%- elsif entry.type == 'email' -%}
+          {% assign email = site.social.email | split: '@' %}
+          javascript:location.href = 'mailto:' + ['{{ email[0] }}','{{ email[1] }}'].join('@')
+        {%- elsif entry.type == 'rss' -%}
+          {{ "/feed.xml" | relative_url }}
+        {%- else -%}
+          {{ entry.url }}
+        {%- endif -%}
+      {% endcapture %}
 
       {% if url %}
-        <a
-          href="{{ url }}"
-          aria-label="{{ entry.type }}"
-          {% assign link_types = '' %}
-
-          {% unless entry.noblank %}
-            target="_blank"
-            {% assign link_types = 'noopener noreferrer' %}
-          {% endunless %}
-
-          {% if entry.type == 'mastodon' %}
-            {% assign link_types = link_types | append: ' me' | strip %}
-          {% endif %}
-
-          {% unless link_types == empty %}
-            rel="{{ link_types }}"
-          {% endunless %}
-        >
-          <i class="{{ entry.icon }}"></i>
-        </a>
+      <a href="{{ url }}" aria-label="{{ entry.type }}"
+        {% unless entry.noblank %}target="_blank" rel="noopener"{% endunless %}>
+        <i class="{{ entry.icon }}"></i>
+      </a>
       {% endif %}
     {% endfor %}
   </div>
-  <!-- .sidebar-bottom -->
-</aside>
-<!-- #sidebar -->
+</div>
