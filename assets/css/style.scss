@@ -1,0 +1,42 @@
+---
+---
+
+/* 1. 전체 배경에 이미지 깔기 (Red & Blue 감성) */
+body {
+  background: url('/assets/img/bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* 2. 사이드바를 리퀴드 글래스(불투명 유리)로 만들기 */
+#sidebar {
+  /* 배경색을 날리고, 유리 효과 적용 */
+  background-color: rgba(27, 27, 48, 0.6) !important; /* 짙은 남색의 반투명 */
+  backdrop-filter: blur(15px); /* 흐림 효과 (핵심!) */
+  -webkit-backdrop-filter: blur(15px); /* 사파리 브라우저 호환 */
+  border-right: 1px solid rgba(255, 255, 255, 0.1); /* 유리 테두리 느낌 */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* 그림자 */
+}
+
+/* 3. 메인 콘텐츠 영역도 살짝 유리 느낌 주기 (가독성 확보) */
+#main-wrapper {
+  background-color: rgba(255, 255, 255, 0.9) !important; /* 낮 모드: 흰색 불투명 */
+  border-radius: 20px 0 0 20px; /* 둥근 모서리 */
+}
+
+/* 다크 모드일 때 메인 영역 스타일 */
+[data-mode="dark"] #main-wrapper {
+  background-color: rgba(30, 30, 40, 0.85) !important; /* 밤 모드: 어두운 불투명 */
+  backdrop-filter: blur(10px);
+}
+
+/* 4. 사이드바 프로필 사진 동그랗게 + 빛나게 */
+#sidebar #avatar img {
+  border-radius: 50%; /* 완전 원형 */
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 15px rgba(255, 50, 50, 0.6); /* 붉은색 네온 효과 */
+  transition: transform 0.3s ease;
+}
+
+#sidebar #avatar img:hover {
+  transform: rotate(10deg) scale(1.1); /* 마우스 올리면 살짝 회전+확대 */
+}
