@@ -2,8 +2,8 @@
 title: My own blogs are on the way!! (again)
 author: Seung Min Lee
 date: 2026-01-30 00:34:00 +0800
-categories: [Blogging, Tutorial]
-tags: [Github, Ruby, SSH]
+categories: [Devlog, Blog]
+tags: [github, ruby, ssh, chirpy]
 ---
 
 The [favicons](https://www.favicon-generator.org/about/) of [**Chirpy**](https://github.com/cotes2020/jekyll-theme-chirpy/) are placed in the directory `assets/img/favicons/`{: .filepath}. You may want to replace them with your own. The following sections will guide you to create and replace the default favicons.
