@@ -1,5 +1,7 @@
 # adgk2349.github.io
 
+[English](README.md) · [한국어](README.ko.md) · [日本語](README.ja.md)
+
 Personal blog and portfolio site for `adgk2349`, built with Jekyll + Chirpy and deployed on GitHub Pages.
 
 - Live site: <https://adgk2349.github.io>
