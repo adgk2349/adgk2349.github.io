@@ -1,0 +1,45 @@
+tags:
+  - AI
+  - LLM
+  - Agents
+  - Swift
+  - iOS
+  - Cloud
+  - DevOps
+  - Product
+  - UX
+  - Startup
+  - Automation
+  - Career
+  - Society
+  - Reflection
+  - Future
+
+category_tag_map:
+  Insight:
+    - Future
+    - AI
+    - LLM
+    - Agents
+  Build:
+    - AI
+    - LLM
+    - Agents
+    - Swift
+    - iOS
+    - Cloud
+    - DevOps
+    - Product
+    - UX
+    - Automation
+    - Startup
+  Opinion:
+    - Career
+    - Society
+    - Future
+    - Product
+  Journal:
+    - Reflection
+    - Career
+    - Future
+    - Society
