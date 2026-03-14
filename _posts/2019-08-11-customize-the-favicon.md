@@ -2,7 +2,7 @@
 title: Customize the Favicon
 author: cotes
 date: 2019-08-11 00:34:00 +0800
-categories: [Note, Blog]
+categories: [Build, Product-Ideas]
 tags: [favicon, branding]
 ---
 

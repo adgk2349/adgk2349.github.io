@@ -2,7 +2,7 @@
 title: My own blogs are on the way!! (again)
 author: Seung Min Lee
 date: 2026-01-30 00:34:00 +0800
-categories: [Devlog, Blog]
+categories: [Journal, Retrospective]
 tags: [github, ruby, ssh, chirpy]
 ---
 
