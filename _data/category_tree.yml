@@ -1,0 +1,24 @@
+- name: Insight
+  children:
+    - Future-Tech
+    - AI-Era
+    - Trend-Reading
+
+- name: Build
+  children:
+    - AI-Projects
+    - iOS
+    - Cloud-DevOps
+    - Product-Ideas
+
+- name: Opinion
+  children:
+    - Industry
+    - Career
+    - Society
+
+- name: Journal
+  children:
+    - Daily
+    - Thoughts
+    - Retrospective
