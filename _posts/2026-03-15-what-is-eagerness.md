@@ -3,7 +3,7 @@ title: 간절함이란 무엇일까?
 date: 2026-03-15 03:25:33 +0900
 categories: [Build, iOS]
 tags: [Swift, Apple, Challenge, Reflection]
-description: Swift Student Challenge를 준비하며 음성 인식의 정확도 향상이 얼마나 어려운지 깨달았다..
+description: Swift Student Challenge 후기
 ---
 
 ## 간절함이란 무엇일까?
