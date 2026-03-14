@@ -1,6 +1,6 @@
 ---
 title: 간절함이란 무엇일까?
-date: 2026-03-15 12:00:00 +0900
+date: 2026-03-15 00:00:00 +0900
 categories: [Build, iOS]
 tags: [Swift, Apple, Challenge, Reflection]
 description: Swift Student Challenge를 준비하며 음성 인식의 정확도 향상이 얼마나 어려운지 깨달았다..
