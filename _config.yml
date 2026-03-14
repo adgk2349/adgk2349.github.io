@@ -13,7 +13,7 @@ plugins:
 # The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
 # If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
 # otherwise, the layout language will use the default value of 'en'.
-lang: en
+lang: ko
 
 # Change to your timezone › https://zones.arilyn.cc
 timezone: Asia/Seoul
@@ -21,13 +21,12 @@ timezone: Asia/Seoul
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: IOS 개발자의 DevLog # the main title
+title: Build, Think, Predict # the main title
 
-tagline: Cloud & DevOps Journey # it will display as the subtitle
+tagline: 뭐먹지 # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  안녕하세요, 클라우드와 DevOps 엔지니어를 꿈꾸는 컴퓨터공학 전공생 이승민입니다.
-  iOS 앱 개발과 인프라 구축 과정을 기록합니다.
+  미래 기술, AI 시대, 제품 아이디어, 개발 기록, 그리고 그 사이에서 떠오르는 생각들을 담는 개인 블로그
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
