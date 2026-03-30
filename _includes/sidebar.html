@@ -51,6 +51,20 @@
       {% endif %}
     {% endunless %}
 
+    {% capture current_page_url %}{{ page.url | absolute_url }}{% endcapture %}
+    {% capture translated_url %}
+      https://translate.google.com/translate?sl=ko&tl=en&u={{ current_page_url | strip | url_encode }}
+    {% endcapture %}
+    <a
+      href="{{ translated_url | strip }}"
+      aria-label="Translate to English"
+      title="Translate to English"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <i class="fas fa-language"></i>
+    </a>
+
     {% for entry in site.data.contact %}
       {%- assign url = null -%}
 
