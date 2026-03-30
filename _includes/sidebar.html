@@ -52,18 +52,22 @@
     {% endunless %}
 
     {% capture current_page_url %}{{ page.url | absolute_url }}{% endcapture %}
-    {% capture translated_url %}
+    {% capture translated_en_url %}
       https://translate.google.com/translate?sl=ko&tl=en&u={{ current_page_url | strip | url_encode }}
     {% endcapture %}
-    <a
-      href="{{ translated_url | strip }}"
-      aria-label="Translate to English"
-      title="Translate to English"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <i class="fas fa-language"></i>
-    </a>
+    {% capture translated_ja_url %}
+      https://translate.google.com/translate?sl=ko&tl=ja&u={{ current_page_url | strip | url_encode }}
+    {% endcapture %}
+    <details class="me-2">
+      <summary class="btn btn-link nav-link p-0" aria-label="Language Menu" title="Language Menu">
+        <i class="fas fa-language"></i>
+      </summary>
+      <div class="d-flex flex-column ps-1">
+        <a href="{{ page.url | relative_url }}" class="small text-decoration-none">KO</a>
+        <a href="{{ translated_en_url | strip }}" class="small text-decoration-none">EN</a>
+        <a href="{{ translated_ja_url | strip }}" class="small text-decoration-none">JA</a>
+      </div>
+    </details>
 
     {% for entry in site.data.contact %}
       {%- assign url = null -%}
