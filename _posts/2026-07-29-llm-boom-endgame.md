@@ -1,7 +1,7 @@
 ---
 title: "LLM붐의 엔드게임 : 실리콘에 갇힌 농부들에게"
 description: "모두가 AI를 외칠 때, 계산기를 두드려야 하는 이유"
-author: adgk2349
+authors: [adgk2349]
 date: 2026-07-29 22:41:00 +0900
 categories: [Opinion, Career]
 tags: [ai, llm, career]
